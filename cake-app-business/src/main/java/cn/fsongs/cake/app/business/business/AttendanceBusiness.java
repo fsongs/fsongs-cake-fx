@@ -7,10 +7,13 @@ import cn.fsongs.cake.common.constant.api.ApiResConstant;
 import cn.fsongs.cake.common.core.code.ApiResFailCode;
 import cn.fsongs.cake.common.exception.BusinessAssert;
 import cn.fsongs.cake.common.exception.BusinessException;
+import cn.fsongs.cake.model.domain.attendance.AttendanceUploadRecord;
 import cn.fsongs.cake.model.pojo.bo.api.DingRecordBO;
 import cn.fsongs.cake.model.pojo.bo.api.DingTokenBO;
 import cn.fsongs.cake.model.pojo.vo.api.DingRecordVO;
 import cn.fsongs.cake.model.pojo.vo.api.DingTokenVO;
+import cn.fsongs.cake.service.service.attendance.AttendanceUploadRecordService;
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import org.springframework.stereotype.Component;
@@ -67,7 +70,7 @@ public class AttendanceBusiness {
     private static final Map<String, String> WHITE_LIST = new HashMap<String, String>() {
         {
             put("oV7CR5QMWBu4CqOSpYb8tvuaEMEE", "01084749613126318215");
-            put("oV7CR5bETAVifyJitfpzwbOUMDok", "324311302720047381");
+            put("oV7CR5bETAVifyJitfpzwbOUMDok", "324311302720047381");//me
             put("oV7CR5Rdv_goP2QAW_J1ugeITwaY", "226941244924245814");
         }
     };
@@ -78,8 +81,10 @@ public class AttendanceBusiness {
     private DingRecordClient dingRecordClient;
     @Resource
     private WxApi wxApi;
+    @Resource
+    private AttendanceUploadRecordService attendanceUploadRecordService;
 
-    public Boolean record(String code, Long checkTime) {
+    public Boolean record(String code, String clientIp, Long checkTime) {
         // 根据code获取openId
         String info = wxApi.userOpenId(WECHAT_KEY, WECHAT_SECRET, code, WECHAT_TYPE);
         JSONObject user = JSONUtil.parseObj(info);
@@ -100,6 +105,15 @@ public class AttendanceBusiness {
         if (!ApiResConstant.DING_OK.equals(record.getErrCode())) {
             throw new BusinessException(ApiResFailCode.RECORD_UPLOAD_FAIL);
         }
+
+        //存储记录
+        AttendanceUploadRecord upload = new AttendanceUploadRecord();
+        upload.setIp(clientIp);
+        upload.setUploadTime(DateUtil.date(checkTime));
+        upload.setUser(openid);
+        upload.setSuccess(record.getSuccess());
+        attendanceUploadRecordService.save(upload);
+
         return record.getSuccess();
     }
 
