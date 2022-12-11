@@ -16,7 +16,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
 #    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
     url: jdbc:mysql://124.221.175.117/cake-fx?useUnicode=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
-#    url: jdbc:p6spy:mysql://192.168.2.100/zblai-sync?useUnicode=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&&zeroDateTimeBehavior=convertToNull
+#    url: jdbc:p6spy:mysql://124.221.175.117/cake-fx?useUnicode=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&&zeroDateTimeBehavior=convertToNull
     username: root
     password: 1443039998fu
     hikari:
