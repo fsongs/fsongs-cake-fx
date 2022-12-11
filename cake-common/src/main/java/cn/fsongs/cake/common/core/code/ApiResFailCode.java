@@ -19,7 +19,12 @@ public class ApiResFailCode {
     public static final ResCode SHOP_NOT_FOUND = new ResCode(200021, "未找到店铺相关信息");
     public static final ResCode SHOP_IS_NULL = new ResCode(200022, "暂无店铺信息");
 
-    public static final ResCode TOKEN_REFRESH_FAIL = new ResCode(200031, "token刷新失败");
+    public static final ResCode TOKEN_BUILD_FAIL = new ResCode(200031, "token获取失败");
+    public static final ResCode TOKEN_REFRESH_FAIL = new ResCode(200032, "token刷新失败");
 
+    /**
+     * 钉钉相关
+     */
+    public static final ResCode RECORD_UPLOAD_FAIL = new ResCode(200041, "你这瓜有问题");
 
 }

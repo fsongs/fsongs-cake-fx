@@ -8,18 +8,7 @@ package cn.fsongs.cake.common.constant.api;
  */
 public final class ApiResConstant {
     /**
-     * 抖店-统一成功码
+     * 钉钉-统一成功码
      */
-    public static final String DD_OK = "10000";
-
-    /**
-     * 抖店-解密接口成功码
-     */
-    public static final long DD_DECRYPT_OK = 0;
-
-    /**
-     * 快手接口统一成功码
-     */
-    public static final int KS_OK = 1;
-
+    public static final Integer DING_OK = 0;
 }
