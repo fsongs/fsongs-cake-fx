@@ -16,7 +16,8 @@
         <module>cake-api</module>
         <module>cake-job</module>
         <module>cake-admin-business</module>
-        <module>cake-job-business</module>
+        <module>cake-app</module>
+        <module>cake-app-business</module>
     </modules>
 
     <parent>

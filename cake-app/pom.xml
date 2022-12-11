@@ -9,19 +9,33 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>cake-admin-business</artifactId>
+    <artifactId>cake-app</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>cn.fsongs</groupId>
-            <artifactId>cake-api</artifactId>
+            <artifactId>cake-app-business</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
         <dependency>
-            <groupId>cn.fsongs</groupId>
-            <artifactId>cake-service</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <!-- 构建插件 maven -->
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <executable>true</executable>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 
 </project>

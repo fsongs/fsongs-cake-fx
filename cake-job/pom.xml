@@ -14,7 +14,12 @@
     <dependencies>
         <dependency>
             <groupId>cn.fsongs</groupId>
-            <artifactId>cake-job-business</artifactId>
+            <artifactId>cake-admin-business</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.fsongs</groupId>
+            <artifactId>cake-app-business</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
