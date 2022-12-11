@@ -23,7 +23,7 @@ public class RecordController {
 
     @PostMapping("/record")
     public Result<Boolean> record(@RequestParam("code") String code, @RequestParam("checkTime") Long checkTime) {
-        return Result.data(attendanceBusiness.build(code, checkTime), "你这瓜真甜");
+        return Result.data(attendanceBusiness.record(code, checkTime), "你这瓜真甜");
     }
 
 }
