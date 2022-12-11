@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>fsongs-cake-fx</artifactId>
+        <groupId>cn.fsongs</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>cake-api</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>cn.fsongs</groupId>
+            <artifactId>cake-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.fsongs</groupId>
+            <artifactId>cake-model</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.fsongs</groupId>
+            <artifactId>cake-service</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>com.jinritemai</groupId>-->
+<!--            <artifactId>doudian-sdk-java</artifactId>-->
+<!--            <version>1.1.0-20220728233116</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.kuaishou.merchant</groupId>-->
+<!--            <artifactId>kuaishou-merchant-open-sdk-release_open_kwaishop_sdk</artifactId>-->
+<!--            <version>1.0.1807</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.aliyun</groupId>-->
+<!--            <artifactId>alibaba-dingtalk-service-sdk</artifactId>-->
+<!--            <version>2.0.0</version>-->
+<!--        </dependency>-->
+
+        <dependency>
+            <groupId>com.aliyun.oss</groupId>
+            <artifactId>aliyun-sdk-oss</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>
