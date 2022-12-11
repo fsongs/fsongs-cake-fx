@@ -5,13 +5,14 @@
     <!--@mbg.generated-->
     <!--@Table attendance_upload_record-->
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="clz_name" jdbcType="VARCHAR" property="clzName" />
+    <result column="user" jdbcType="VARCHAR" property="user" />
     <result column="ip" jdbcType="VARCHAR" property="ip" />
     <result column="success" jdbcType="BOOLEAN" property="success" />
     <result column="upload_time" jdbcType="TIMESTAMP" property="uploadTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, clz_name, ip, success, upload_time
+    id, `user`, ip, success, upload_time, create_time
   </sql>
 </mapper>

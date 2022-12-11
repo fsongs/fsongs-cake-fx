@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 /**
  * @author fsongs
  * @version 1.0
- * @date 2022/12/11 12:08
+ * @date 2022/12/11 13:09
  */
 /**
     * 上传记录表
@@ -32,8 +32,8 @@ public class AttendanceUploadRecord implements Serializable {
     /**
      * 用户名
      */
-    @TableField(value = "clz_name")
-    private String clzName;
+    @TableField(value = "user")
+    private String user;
 
     /**
      * 请求ip
@@ -53,15 +53,23 @@ public class AttendanceUploadRecord implements Serializable {
     @TableField(value = "upload_time")
     private Date uploadTime;
 
+    /**
+     * 请求时间
+     */
+    @TableField(value = "create_time")
+    private Date createTime;
+
     private static final long serialVersionUID = 1L;
 
     public static final String COL_ID = "id";
 
-    public static final String COL_CLZ_NAME = "clz_name";
+    public static final String COL_USER = "user";
 
     public static final String COL_IP = "ip";
 
     public static final String COL_SUCCESS = "success";
 
     public static final String COL_UPLOAD_TIME = "upload_time";
+
+    public static final String COL_CREATE_TIME = "create_time";
 }
