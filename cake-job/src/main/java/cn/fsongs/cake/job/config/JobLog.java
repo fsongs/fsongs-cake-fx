@@ -1,8 +1,7 @@
-package cn.fsongs.cake.common.aop;
+package cn.fsongs.cake.job.config;
 
-import cn.fsongs.cake.common.util.core.NetworkUtil;
-import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
+import com.xxl.job.core.context.XxlJobHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -10,51 +9,42 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.MDC;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
 /**
  * @author fsongs
  * @version 1.0
- * @date 2022/6/15 14:05
+ * @date 2022/8/11 11:15
  */
 @Component
-@Aspect
 @Slf4j
-public class LogAop {
+@Aspect
+public class JobLog {
     private static ThreadLocal<Long> ACCESS_TIME = new ThreadLocal<>();
 
     private static final List<String> WHITE_URI = Lists.newArrayList("heartbeat");
 
-    @Around(value = "execution(* cn.fsongs..*.controller..*.*(..))")
+    @Around(value = "execution(* cn.fsongs..*.task..*.*(..))")
     public Object doAround(ProceedingJoinPoint point) throws Throwable {
         preProcess(point);
         Object obj = point.proceed();
-        postProcess(point, obj);
+        postProcess(point);
         return obj;
     }
 
     private void preProcess(ProceedingJoinPoint pjp) {
         ACCESS_TIME.set(System.currentTimeMillis());
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        String ip = NetworkUtil.getClientIp(request);
-        String uri = request.getRequestURI();
-
         MDC.put("traceId", UUID.randomUUID().toString().replaceAll("-", "").substring(0, 8));
         if (isPrintResult(getMethodName(pjp))) {
-            log.info("ip：{}, uri：{}，Method：{}, Args：{}", ip, uri, getMethodName(pjp), Arrays.toString(pjp.getArgs()));
+            log.info("--> startJob：{}, param：{}", getMethodName(pjp), XxlJobHelper.getJobParam());
         }
     }
 
-    private void postProcess(ProceedingJoinPoint pjp, Object obj) {
+    private void postProcess(ProceedingJoinPoint pjp) {
         if (isPrintResult(getMethodName(pjp))) {
-            log.info("Method：{}, time：{}ms, retValue={}", getMethodName(pjp), System.currentTimeMillis() - ACCESS_TIME.get(),
-                    isPrintResult(getMethodName(pjp)) ? (obj == null ? "" : JSONObject.toJSONString(obj)) : "wu");
+            log.info("<-- endJob：{}, time：{}ms", getMethodName(pjp), System.currentTimeMillis() - ACCESS_TIME.get());
         }
         MDC.remove("traceId");
     }

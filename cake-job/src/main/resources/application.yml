@@ -1,0 +1,43 @@
+server:
+  port: 8083
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+spring:
+#  redis:
+#    host: 47.98.187.117
+#    port: 6379
+#    password: zblai617
+#    timeout: 5000ms
+#    jedis:
+#      pool:
+#        max-active: 30
+#        max-idle: 10
+#        min-idle: 1
+#        max-wait: -1ms
+  datasource:
+    #    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+    #    url: jdbc:mysql://192.168.2.100/zblai-sync-test?useUnicode=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
+    url: jdbc:p6spy:mysql://192.168.2.100/zblai-sync-test?useUnicode=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: zblai616
+    hikari:
+      # 数据库连接池初始化 10
+      minimum-idle: 100
+      connection-timeout: 10000
+mybatis-plus:
+  type-aliases-package: com.zblai.core.model.mapper
+  mapper-locations: classpath*:mapper/*.xml
+
+# xxl-job配置
+xxl:
+  job:
+    admin:
+      addresses: http://192.168.2.100:8090/xxl-job-admin
+    executor:
+      appname: data-job
+      port: 8084
+      ip: 192.168.2.100
