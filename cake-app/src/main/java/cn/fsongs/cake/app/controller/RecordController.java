@@ -26,7 +26,7 @@ public class RecordController {
     @PostMapping("/record")
     public Result<Boolean> record(HttpServletRequest request, @RequestParam("code") String code, @RequestParam("checkTime") Long checkTime) {
         String clientIp = NetworkUtil.getClientIp(request);
-        return Result.data(attendanceBusiness.record(clientIp, code, checkTime), "你这瓜真甜");
+        return Result.data(attendanceBusiness.record(code, clientIp, checkTime), "你这瓜真甜");
     }
 
 }
