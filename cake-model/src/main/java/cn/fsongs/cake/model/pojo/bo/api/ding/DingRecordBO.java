@@ -1,4 +1,4 @@
-package cn.fsongs.cake.model.pojo.bo.api;
+package cn.fsongs.cake.model.pojo.bo.api.ding;
 
 import cn.fsongs.cake.model.pojo.bo.BaseBO;
 import com.fasterxml.jackson.annotation.JsonProperty;

@@ -29,4 +29,9 @@ public class RecordController {
         return Result.data(attendanceBusiness.record(code, clientIp, checkTime), "你这瓜真甜");
     }
 
+    @PostMapping("/demo")
+    public Result<Boolean> record(@RequestParam("code") String code, Long checkTime) {
+        return Result.data(true, "我哈哈大笑");
+    }
+
 }

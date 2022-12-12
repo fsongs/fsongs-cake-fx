@@ -1,7 +1,7 @@
 package cn.fsongs.cake.api.dingtalk;
 
 import cn.fsongs.cake.common.constant.api.ApiUrlConstant;
-import cn.fsongs.cake.model.pojo.bo.api.DingTokenBO;
+import cn.fsongs.cake.model.pojo.bo.api.ding.DingTokenBO;
 import cn.fsongs.cake.model.pojo.vo.api.ding.DingTokenVO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;

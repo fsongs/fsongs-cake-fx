@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Component
 @FeignClient(url = ApiUrlConstant.WECHAT_URL, name = "wxAuth")
-public interface AuthClient {
+public interface AuthApi {
 
     /**
      * 获取token

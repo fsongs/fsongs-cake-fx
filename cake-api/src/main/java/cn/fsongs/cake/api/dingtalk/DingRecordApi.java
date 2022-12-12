@@ -1,7 +1,7 @@
 package cn.fsongs.cake.api.dingtalk;
 
 import cn.fsongs.cake.common.constant.api.ApiUrlConstant;
-import cn.fsongs.cake.model.pojo.bo.api.DingRecordBO;
+import cn.fsongs.cake.model.pojo.bo.api.ding.DingRecordBO;
 import cn.fsongs.cake.model.pojo.vo.api.ding.DingRecordVO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Component
 @FeignClient(url = ApiUrlConstant.DING_URL_O, name = "dingRecord")
-public interface DingRecordClient {
+public interface DingRecordApi {
 
     /**
      * 上传记录

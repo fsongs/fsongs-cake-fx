@@ -1,16 +1,19 @@
 package cn.fsongs.cake.app;
 
-import cn.fsongs.cake.api.dingtalk.DingRecordClient;
+import cn.fsongs.cake.api.dingtalk.DingRecordApi;
 import cn.fsongs.cake.api.dingtalk.DingTokenApi;
-import cn.fsongs.cake.api.wechat.AuthClient;
+import cn.fsongs.cake.api.wechat.AuthApi;
+import cn.fsongs.cake.api.wechat.CustomerApi;
 import cn.fsongs.cake.common.util.override.DateUtils;
-import cn.fsongs.cake.model.pojo.bo.api.DingRecordBO;
-import cn.fsongs.cake.model.pojo.bo.api.DingTokenBO;
+import cn.fsongs.cake.model.pojo.bo.api.ding.DingRecordBO;
+import cn.fsongs.cake.model.pojo.bo.api.ding.DingTokenBO;
+import cn.fsongs.cake.model.pojo.bo.api.wx.CustomerPhoneBO;
 import cn.fsongs.cake.model.pojo.vo.api.ding.DingRecordVO;
 import cn.fsongs.cake.model.pojo.vo.api.ding.DingTokenVO;
 import cn.fsongs.cake.model.pojo.vo.api.wx.WxLoginVO;
 import cn.fsongs.cake.model.pojo.vo.api.wx.WxTokenVO;
 import cn.hutool.core.date.DateTime;
+import cn.hutool.json.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,9 +34,11 @@ public class ApiTest {
     @Resource
     private DingTokenApi dingTokenApi;
     @Resource
-    private DingRecordClient dingRecordClient;
+    private DingRecordApi dingRecordClient;
     @Resource
-    private AuthClient authClient;
+    private AuthApi authClient;
+    @Resource
+    private CustomerApi customerApi;
 
     @Test
     public void dingToken() {
@@ -60,7 +65,15 @@ public class ApiTest {
 
     @Test
     public void openId() {
-        WxLoginVO wxLoginVO = authClient.userOpenId("wxcf35b3eb344403aa", "28bf865dfe3e290cc4b05e29bd4dd58c", "a", "authorization_code");
+        WxLoginVO wxLoginVO = authClient.userOpenId("wxcf35b3eb344403aa", "28bf865dfe3e290cc4b05e29bd4dd58c", "013BOj0w35daKZ2sth3w3QWjt81BOj0l", "authorization_code");
         System.out.println(wxLoginVO.toString());
+    }
+
+    @Test
+    public void phone() {
+        CustomerPhoneBO bo = new CustomerPhoneBO();
+        bo.setCode("063aEE0w3ljfJZ2e4N1w3viEpW1aEE0b");
+        JSONObject vo = customerApi.userPhoneNumber("63_CZrS7LA9h9mmFzlrQ2FMrt_Z7FAYVS59kZyUt4d0cLidgWxCs2EBU0hLOO5nFMNUjVUCNb55hIWHOCoBBtWXTokg9c7F2t3rS26fnau6rjkWoYnWwUCPcqyyOpMMDNiAEAIZJ", bo);
+        System.out.println(vo.toString());
     }
 }

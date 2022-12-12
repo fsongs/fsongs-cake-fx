@@ -1,4 +1,4 @@
-package cn.fsongs.cake.model.pojo.bo.api;
+package cn.fsongs.cake.model.pojo.bo.api.ding;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,15 +1,15 @@
 package cn.fsongs.cake.app.business.business;
 
-import cn.fsongs.cake.api.dingtalk.DingRecordClient;
+import cn.fsongs.cake.api.dingtalk.DingRecordApi;
 import cn.fsongs.cake.api.dingtalk.DingTokenApi;
-import cn.fsongs.cake.api.wechat.AuthClient;
+import cn.fsongs.cake.api.wechat.AuthApi;
 import cn.fsongs.cake.common.constant.api.ApiResConstant;
 import cn.fsongs.cake.common.core.code.ApiResFailCode;
 import cn.fsongs.cake.common.exception.BusinessAssert;
 import cn.fsongs.cake.common.exception.BusinessException;
 import cn.fsongs.cake.model.domain.attendance.AttendanceUploadRecord;
-import cn.fsongs.cake.model.pojo.bo.api.DingRecordBO;
-import cn.fsongs.cake.model.pojo.bo.api.DingTokenBO;
+import cn.fsongs.cake.model.pojo.bo.api.ding.DingRecordBO;
+import cn.fsongs.cake.model.pojo.bo.api.ding.DingTokenBO;
 import cn.fsongs.cake.model.pojo.vo.api.ding.DingRecordVO;
 import cn.fsongs.cake.model.pojo.vo.api.ding.DingTokenVO;
 import cn.fsongs.cake.model.pojo.vo.api.wx.WxLoginVO;
@@ -77,9 +77,9 @@ public class AttendanceBusiness {
     @Resource
     private DingTokenApi dingTokenApi;
     @Resource
-    private DingRecordClient dingRecordClient;
+    private DingRecordApi dingRecordClient;
     @Resource
-    private AuthClient authClient;
+    private AuthApi authClient;
     @Resource
     private AttendanceUploadRecordService attendanceUploadRecordService;
 
