@@ -2,7 +2,7 @@ package cn.fsongs.cake.app.business.business;
 
 import cn.fsongs.cake.api.dingtalk.DingRecordClient;
 import cn.fsongs.cake.api.dingtalk.DingTokenApi;
-import cn.fsongs.cake.api.wechat.WxApi;
+import cn.fsongs.cake.api.wechat.AuthClient;
 import cn.fsongs.cake.common.constant.api.ApiResConstant;
 import cn.fsongs.cake.common.core.code.ApiResFailCode;
 import cn.fsongs.cake.common.exception.BusinessAssert;
@@ -80,13 +80,13 @@ public class AttendanceBusiness {
     @Resource
     private DingRecordClient dingRecordClient;
     @Resource
-    private WxApi wxApi;
+    private AuthClient authClient;
     @Resource
     private AttendanceUploadRecordService attendanceUploadRecordService;
 
     public Boolean record(String code, String clientIp, Long checkTime) {
         // 根据code获取openId
-        String info = wxApi.userOpenId(WECHAT_KEY, WECHAT_SECRET, code, WECHAT_TYPE);
+        String info = authClient.userOpenId(WECHAT_KEY, WECHAT_SECRET, code, WECHAT_TYPE);
         JSONObject user = JSONUtil.parseObj(info);
         String openid = (String) user.get("openid");
 

@@ -1,5 +1,6 @@
 package cn.fsongs.cake.api.dingtalk;
 
+import cn.fsongs.cake.common.constant.api.ApiUrlConstant;
 import cn.fsongs.cake.model.pojo.bo.api.DingRecordBO;
 import cn.fsongs.cake.model.pojo.vo.api.DingRecordVO;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @apiNote name属性与类名不同
  */
 @Component
-@FeignClient(url = "https://oapi.dingtalk.com", name = "dingApi")
+@FeignClient(url = ApiUrlConstant.DING_URL_O, name = "dingRecord")
 public interface DingRecordClient {
 
     /**
