@@ -10,12 +10,11 @@ import cn.fsongs.cake.common.exception.BusinessException;
 import cn.fsongs.cake.model.domain.attendance.AttendanceUploadRecord;
 import cn.fsongs.cake.model.pojo.bo.api.DingRecordBO;
 import cn.fsongs.cake.model.pojo.bo.api.DingTokenBO;
-import cn.fsongs.cake.model.pojo.vo.api.DingRecordVO;
-import cn.fsongs.cake.model.pojo.vo.api.DingTokenVO;
+import cn.fsongs.cake.model.pojo.vo.api.ding.DingRecordVO;
+import cn.fsongs.cake.model.pojo.vo.api.ding.DingTokenVO;
+import cn.fsongs.cake.model.pojo.vo.api.wx.WxLoginVO;
 import cn.fsongs.cake.service.service.attendance.AttendanceUploadRecordService;
 import cn.hutool.core.date.DateUtil;
-import cn.hutool.json.JSONObject;
-import cn.hutool.json.JSONUtil;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -86,9 +85,8 @@ public class AttendanceBusiness {
 
     public Boolean record(String code, String clientIp, Long checkTime) {
         // 根据code获取openId
-        String info = authClient.userOpenId(WECHAT_KEY, WECHAT_SECRET, code, WECHAT_TYPE);
-        JSONObject user = JSONUtil.parseObj(info);
-        String openid = (String) user.get("openid");
+        WxLoginVO login = authClient.userOpenId(WECHAT_KEY, WECHAT_SECRET, code, WECHAT_TYPE);
+        String openId = login.getOpenId();
 
         // 获取钉钉token
         DingTokenBO bo = new DingTokenBO(DING_KEY, DING_SECRET);
@@ -100,7 +98,7 @@ public class AttendanceBusiness {
         recordBO.setUserCheckTime(checkTime);
         recordBO.setDeviceName(DEVICE_NAME);
         recordBO.setDeviceId(DEVICE_ID);
-        recordBO.setUserid(WHITE_LIST.get(openid));
+        recordBO.setUserid(WHITE_LIST.get(openId));
         DingRecordVO record = dingRecordClient.record(token.getAccessToken(), recordBO);
         if (!ApiResConstant.DING_OK.equals(record.getErrCode())) {
             throw new BusinessException(ApiResFailCode.RECORD_UPLOAD_FAIL);
@@ -110,7 +108,7 @@ public class AttendanceBusiness {
         AttendanceUploadRecord upload = new AttendanceUploadRecord();
         upload.setIp(clientIp);
         upload.setUploadTime(DateUtil.date(checkTime));
-        upload.setUser(openid);
+        upload.setUser(openId);
         upload.setSuccess(record.getSuccess());
         attendanceUploadRecordService.save(upload);
 

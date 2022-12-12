@@ -1,5 +1,6 @@
-package cn.fsongs.cake.model.pojo.vo.api;
+package cn.fsongs.cake.model.pojo.vo.api.wx;
 
+import cn.fsongs.cake.model.pojo.vo.api.WxVO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
@@ -9,7 +10,7 @@ import lombok.Data;
  * @date 2022/12/12 11:00
  */
 @Data
-public class WxTokenVO extends WechatVO {
+public class WxTokenVO extends WxVO {
     /**
      * 微信token
      */

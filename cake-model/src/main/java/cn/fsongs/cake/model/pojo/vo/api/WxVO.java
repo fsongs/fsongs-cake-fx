@@ -10,7 +10,7 @@ import lombok.Data;
  * @date 2022/12/12 11:01
  */
 @Data
-public abstract class WechatVO extends BasePojo {
+public abstract class WxVO extends BasePojo {
     /**
      * 错误代码
      */

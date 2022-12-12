@@ -1,7 +1,8 @@
 package cn.fsongs.cake.api.wechat;
 
 import cn.fsongs.cake.common.constant.api.ApiUrlConstant;
-import cn.fsongs.cake.model.pojo.vo.api.WxTokenVO;
+import cn.fsongs.cake.model.pojo.vo.api.wx.WxLoginVO;
+import cn.fsongs.cake.model.pojo.vo.api.wx.WxTokenVO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,5 +37,5 @@ public interface AuthClient {
      * @return
      */
     @PostMapping("/sns/jscode2session")
-    String userOpenId(@RequestParam("appid") String appid, @RequestParam("secret") String secret, @RequestParam("js_code") String code, @RequestParam("grant_type") String type);
+    WxLoginVO userOpenId(@RequestParam("appid") String appid, @RequestParam("secret") String secret, @RequestParam("js_code") String code, @RequestParam("grant_type") String type);
 }
