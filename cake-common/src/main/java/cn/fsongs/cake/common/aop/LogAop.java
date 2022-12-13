@@ -1,4 +1,4 @@
-package cn.fsongs.cake.admin.config;
+package cn.fsongs.cake.common.aop;
 
 import cn.fsongs.cake.common.util.core.NetworkUtil;
 import com.alibaba.fastjson.JSONObject;
