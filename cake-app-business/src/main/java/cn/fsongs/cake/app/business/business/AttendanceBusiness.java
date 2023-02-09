@@ -56,12 +56,12 @@ public class AttendanceBusiness {
     /**
      * 地点
      */
-    private static final String DEVICE_NAME = "IX-work大厦";
+    private static final String DEVICE_NAME = "杭州自变量信息科技有限公司_21387";
 
     /**
      * 机器号
      */
-    private static final String DEVICE_ID = "1";
+    private static final String DEVICE_ID = "21387";
 
     /**
      * 白名单
